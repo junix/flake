@@ -78,7 +78,7 @@ handle_call({get,Base}, _From, State = #state{max_time=MaxTime,worker_id=WorkerI
     case Resp of
 	{ok, Id} ->
 	    <<IntId:128/integer>> = Id,
-	    {reply, {ok, flake_util:as_list(IntId, Base)}, S0};
+	    {reply, {ok, list_to_binary(flake_util:as_list(IntId, Base))}, S0};
 	E ->
 	    {reply, E, S0}
     end;
