@@ -77,7 +77,7 @@ handle_call({get,Base}, _From, State = #state{max_time=MaxTime,worker_id=WorkerI
     {Resp, S0} = get(flake_util:curr_time_millis(), MaxTime, WorkerId, Sequence, State),
     case Resp of
 	{ok, Id} ->
-	    <<IntId:128/integer>> = Id,
+	    <<IntId:96/integer>> = Id,
 	    {reply, {ok, list_to_binary(flake_util:as_list(IntId, Base))}, S0};
 	E ->
 	    {reply, E, S0}
